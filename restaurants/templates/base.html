@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}">
+   
+
+
     <title>{% block title %}{% endblock title %}</title>
 
     <style>
@@ -14,8 +17,23 @@
         margin-bottom: 20px;
       }
     </style>
+
+
   </head>
+
+
   <body>
+    {% if messages%}
+      <div class="messages">
+        {% for message in messages %}
+          <div {% if message.tags %} class="alert alert-{{ message.tag}}" {% endif %}
+          >{{message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {{request.name}}
+
+
     {% include "navbar.html" %}
     <div class="container">
       {% block content %}
